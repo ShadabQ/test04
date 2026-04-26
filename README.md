@@ -33,6 +33,7 @@ A simple, secure Spring Boot application with Thymeleaf templating engine and Sp
 - **Spring Web** - REST API support
 - **Spring Security** - Authentication and authorization
 - **Thymeleaf** - Server-side template engine with security features
+- **Keycloak** - OpenID Connect/OAuth2 Identity Provider (optional)
 - **Java 17** - Minimum JDK requirement
 - **Maven** - Build tool
 
@@ -63,6 +64,41 @@ The application will start on `http://localhost:8080`
 |----------|----------|-------|
 | user     | password | USER  |
 | admin    | admin123 | ADMIN |
+
+## Keycloak Integration (Optional)
+
+This application supports **Keycloak** as an OpenID Connect/OAuth2 Identity Provider.
+
+### Quick Start with Local Keycloak:
+
+```bash
+# Start Keycloak locally (requires Docker)
+docker-compose up -d
+
+# Access Keycloak Admin: http://localhost:8180
+# Admin credentials: admin / admin123
+```
+
+Then enable Keycloak in [application.properties](src/main/resources/application.properties):
+```properties
+keycloak.enabled=true
+keycloak.realm=demo
+keycloak.auth-server-url=http://localhost:8180
+keycloak.resource=springboot-app
+keycloak.credentials.secret=YOUR_CLIENT_SECRET
+```
+
+### Cloud-Hosted Options:
+
+- **Keycloak.cloud** (recommended) - Free managed service
+- **AWS Cognito** - Free tier available
+- **Azure AD** - Free tier available
+
+**See [KEYCLOAK_SETUP.md](KEYCLOAK_SETUP.md) for detailed setup instructions.**
+
+### Fallback to In-Memory Auth:
+
+Keep `keycloak.enabled=false` (default) to use built-in authentication with test accounts above.
 
 ## Usage
 
