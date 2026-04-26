@@ -91,6 +91,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Security OAuth2 Resource Server -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
         <!-- Spring Security Thymeleaf Extra -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>

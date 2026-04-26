@@ -14,6 +14,7 @@
                 <span th:text="'Welcome, ' + ${username}"></span>
                 <a href="/">Home</a>
                 <form method="post" action="/logout" style="display:inline;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <button type="submit">Logout</button>
                 </form>
             </nav>
@@ -27,7 +28,18 @@
                 <div class="dashboard-card">
                     <h3>Account Information</h3>
                     <p><strong>Username:</strong> <span th:text="${username}"></span></p>
+                    <p><strong>Roles:</strong> <span th:text="${roles}"></span></p>
                     <p>Logged in successfully with Spring Security.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Authentication Method</h3>
+                    <p sec:authorize="hasAuthority('access_token')">
+                        <strong>Provider:</strong> Keycloak OAuth2
+                    </p>
+                    <p sec:authorize="!hasAuthority('access_token')">
+                        <strong>Provider:</strong> In-Memory Authentication
+                    </p>
                 </div>
 
                 <div class="dashboard-card">
@@ -37,7 +49,19 @@
                         <li>XSS Protection via Thymeleaf</li>
                         <li>Secure Password Encoding with BCrypt</li>
                         <li>Role-Based Access Control</li>
+                        <li>OAuth2/OpenID Connect Support via Keycloak</li>
+                        <li>JWT Token Validation</li>
                     </ul>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Administrator Features</h3>
+                    <p sec:authorize="hasRole('ADMIN')">
+                        You have admin access to the system.
+                    </p>
+                    <p sec:authorize="!hasRole('ADMIN')">
+                        Contact an administrator for elevated privileges.
+                    </p>
                 </div>
             </section>
         </main>
