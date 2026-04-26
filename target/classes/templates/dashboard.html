@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Demo - Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dashboard</h1>
+            <nav>
+                <span th:text="'Welcome, ' + ${username}"></span>
+                <a href="/">Home</a>
+                <form method="post" action="/logout" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard-content">
+                <h2>User Dashboard</h2>
+                <p>This is a protected page. Only authenticated users can access this.</p>
+
+                <div class="dashboard-card">
+                    <h3>Account Information</h3>
+                    <p><strong>Username:</strong> <span th:text="${username}"></span></p>
+                    <p>Logged in successfully with Spring Security.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Security Features</h3>
+                    <ul>
+                        <li>CSRF Protection Enabled</li>
+                        <li>XSS Protection via Thymeleaf</li>
+                        <li>Secure Password Encoding with BCrypt</li>
+                        <li>Role-Based Access Control</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Spring Boot Demo. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
