@@ -37,8 +37,8 @@
                     <li>Spring Boot 3.2.3</li>
                     <li>Thymeleaf Template Engine</li>
                     <li>Spring Security with Role-Based Access Control</li>
-                    <li>Keycloak Identity Provider Integration</li>
-                    <li>OAuth2/OpenID Connect Support</li>
+                    <li>Form-Based Authentication</li>
+                    <li>In-Memory User Management</li>
                     <li>Responsive UI Design</li>
                 </ul>
             </section>
@@ -49,11 +49,6 @@
                     <li><strong>User:</strong> username: user | password: password</li>
                     <li><strong>Admin:</strong> username: admin | password: admin123</li>
                 </ul>
-            </section>
-
-            <section class="keycloak-info" sec:authorize="hasAuthority('access_token')">
-                <h3>Using Keycloak Authentication</h3>
-                <p>This application is configured to use Keycloak for identity management.</p>
             </section>
 
             <section class="setup-guide">

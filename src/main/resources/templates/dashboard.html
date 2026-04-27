@@ -34,12 +34,7 @@
 
                 <div class="dashboard-card">
                     <h3>Authentication Method</h3>
-                    <p sec:authorize="hasAuthority('access_token')">
-                        <strong>Provider:</strong> Keycloak OAuth2
-                    </p>
-                    <p sec:authorize="!hasAuthority('access_token')">
-                        <strong>Provider:</strong> In-Memory Authentication
-                    </p>
+                    <p><strong>Provider:</strong> In-Memory Authentication</p>
                 </div>
 
                 <div class="dashboard-card">
