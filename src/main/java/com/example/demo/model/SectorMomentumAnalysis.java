@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "sector_momentum_analysis")
@@ -16,17 +18,26 @@ public class SectorMomentumAnalysis {
     @Column(name = "sector")
     private String sector;
 
-    @Column(name = "momentum_value")
-    private Double momentumValue;
+    @Column(name = "calculated_date")
+    private LocalDate calculatedDate;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "phase")
+    private String phase;
 
-    @Column(name = "change_percentage")
-    private Double changePercentage;
+    @Column(name = "rs_12m")
+    private BigDecimal rs12m;
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "rsi_14")
+    private BigDecimal rsi14;
+
+    @Column(name = "adx_14")
+    private BigDecimal adx14;
+
+    @Column(name = "return_12m")
+    private String return12m;
+
+    @Column(name = "trend")
+    private String trend;
 }
 
 

@@ -27,17 +27,24 @@ public class SectorMomentumService {
     }
 
     /**
-     * Fetch analysis by status
+     * Fetch analysis by phase
      */
-    public List<SectorMomentumAnalysis> getAnalysisByStatus(String status) {
-        return repository.findByStatusOrderByAnalysisDateDesc(status);
+    public List<SectorMomentumAnalysis> getAnalysisByPhase(String phase) {
+        return repository.findByPhase(phase);
     }
 
     /**
-     * Get analysis record by ID
+     * Fetch analysis by trend
      */
-    public SectorMomentumAnalysis getAnalysisById(Long id) {
-        return repository.findById(id).orElse(null);
+    public List<SectorMomentumAnalysis> getAnalysisByTrend(String trend) {
+        return repository.findByTrend(trend);
+    }
+
+    /**
+     * Get analysis record by sector ID
+     */
+    public SectorMomentumAnalysis getAnalysisById(String sector) {
+        return repository.findById(sector).orElse(null);
     }
 
     /**

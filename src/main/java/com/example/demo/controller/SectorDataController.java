@@ -52,13 +52,31 @@ public class SectorDataController {
         }
     }
 
-    @GetMapping("/by-status/{status}")
-    public Map<String, Object> getSectorByStatus(@PathVariable String status) {
+    @GetMapping("/by-phase/{phase}")
+    public Map<String, Object> getSectorByPhase(@PathVariable String phase) {
         try {
-            List<SectorMomentumAnalysis> data = sectorMomentumService.getAnalysisByStatus(status);
+            List<SectorMomentumAnalysis> data = sectorMomentumService.getAnalysisByPhase(phase);
             return Map.of(
                 "success", true,
-                "status", status,
+                "phase", phase,
+                "count", data.size(),
+                "data", data
+            );
+        } catch (Exception e) {
+            return Map.of(
+                "success", false,
+                "error", e.getMessage()
+            );
+        }
+    }
+
+    @GetMapping("/by-trend/{trend}")
+    public Map<String, Object> getSectorByTrend(@PathVariable String trend) {
+        try {
+            List<SectorMomentumAnalysis> data = sectorMomentumService.getAnalysisByTrend(trend);
+            return Map.of(
+                "success", true,
+                "trend", trend,
                 "count", data.size(),
                 "data", data
             );

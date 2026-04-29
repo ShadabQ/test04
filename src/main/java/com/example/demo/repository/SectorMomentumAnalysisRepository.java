@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SectorMomentumAnalysisRepository extends JpaRepository<SectorMomentumAnalysis, Long> {
+public interface SectorMomentumAnalysisRepository extends JpaRepository<SectorMomentumAnalysis, String> {
     List<SectorMomentumAnalysis> findBySector(String sector);
-    List<SectorMomentumAnalysis> findByStatusOrderByAnalysisDateDesc(String status);
+    List<SectorMomentumAnalysis> findByPhase(String phase);
+    List<SectorMomentumAnalysis> findByTrend(String trend);
 }
