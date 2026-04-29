@@ -1,3 +1,7 @@
+/workspaces/test04/src/main/java/com/example/demo/service/SectorMomentumService.java
+/workspaces/test04/src/main/java/com/example/demo/controller/SectorDataController.java
+/workspaces/test04/src/main/java/com/example/demo/model/SectorMomentumAnalysis.java
 /workspaces/test04/src/main/java/com/example/demo/controller/HomeController.java
 /workspaces/test04/src/main/java/com/example/demo/config/SecurityConfig.java
+/workspaces/test04/src/main/java/com/example/demo/repository/SectorMomentumAnalysisRepository.java
 /workspaces/test04/src/main/java/com/example/demo/Application.java
