@@ -121,6 +121,139 @@ section li {
     margin-top: 0;
 }
 
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-summary {
+    background-color: #ffffff;
+    border: 1px solid #dfe6ee;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    min-width: 180px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.dashboard-summary span {
+    display: block;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.dashboard-summary strong {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+.dashboard-card-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.sector-grid-section {
+    margin-top: 2rem;
+}
+
+.section-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.sector-card {
+    background-color: #ffffff;
+    border: 1px solid #e3e8ee;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(46, 61, 73, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sector-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sector-card-header h4 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #1f3a5f;
+}
+
+.sector-tag {
+    background-color: #e8f4fb;
+    color: #2176bf;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.sector-card-body {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sector-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.85rem;
+    background-color: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
+}
+
+.sector-row span {
+    color: #657786;
+}
+
+.sector-row strong {
+    color: #2c3e50;
+}
+
+.sector-card-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background-color: #dff2e8;
+    color: #1f6f3b;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

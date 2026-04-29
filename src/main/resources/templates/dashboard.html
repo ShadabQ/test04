@@ -22,42 +22,95 @@
 
         <main>
             <section class="dashboard-content">
-                <h2>User Dashboard</h2>
-                <p>This is a protected page. Only authenticated users can access this.</p>
-
-                <div class="dashboard-card">
-                    <h3>Account Information</h3>
-                    <p><strong>Username:</strong> <span th:text="${username}"></span></p>
-                    <p><strong>Roles:</strong> <span th:text="${roles}"></span></p>
-                    <p>Logged in successfully with Spring Security.</p>
+                <div class="dashboard-header">
+                    <div>
+                        <h2>User Dashboard</h2>
+                        <p>This is a protected page. Only authenticated users can access this.</p>
+                    </div>
+                    <div class="dashboard-summary">
+                        <span>Total Records</span>
+                        <strong th:text="${totalRecords}">0</strong>
+                    </div>
                 </div>
 
-                <div class="dashboard-card">
-                    <h3>Authentication Method</h3>
-                    <p><strong>Provider:</strong> In-Memory Authentication</p>
+                <div class="dashboard-card-row">
+                    <div class="dashboard-card">
+                        <h3>Account Information</h3>
+                        <p><strong>Username:</strong> <span th:text="${username}"></span></p>
+                        <p><strong>Roles:</strong> <span th:text="${roles}"></span></p>
+                        <p>Logged in successfully with Spring Security.</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Authentication Method</h3>
+                        <p><strong>Provider:</strong> In-Memory Authentication</p>
+                    </div>
                 </div>
 
-                <div class="dashboard-card">
-                    <h3>Security Features</h3>
-                    <ul>
-                        <li>CSRF Protection Enabled</li>
-                        <li>XSS Protection via Thymeleaf</li>
-                        <li>Secure Password Encoding with BCrypt</li>
-                        <li>Role-Based Access Control</li>
-                        <li>OAuth2/OpenID Connect Support via Keycloak</li>
-                        <li>JWT Token Validation</li>
-                    </ul>
+                <div class="dashboard-card-row">
+                    <div class="dashboard-card">
+                        <h3>Security Features</h3>
+                        <ul>
+                            <li>CSRF Protection Enabled</li>
+                            <li>XSS Protection via Thymeleaf</li>
+                            <li>Secure Password Encoding with BCrypt</li>
+                            <li>Role-Based Access Control</li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Administrator Features</h3>
+                        <p sec:authorize="hasRole('ADMIN')">
+                            You have admin access to the system.
+                        </p>
+                        <p sec:authorize="!hasRole('ADMIN')">
+                            Contact an administrator for elevated privileges.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="dashboard-card">
-                    <h3>Administrator Features</h3>
-                    <p sec:authorize="hasRole('ADMIN')">
-                        You have admin access to the system.
-                    </p>
-                    <p sec:authorize="!hasRole('ADMIN')">
-                        Contact an administrator for elevated privileges.
-                    </p>
-                </div>
+                <section class="sector-grid-section">
+                    <div class="section-title-row">
+                        <h3>Sector Momentum Analysis</h3>
+                        <p>Each card displays the latest record details for a sector.</p>
+                    </div>
+
+                    <div class="sector-grid">
+                        <div class="sector-card" th:each="record : ${sectorAnalysis}">
+                            <div class="sector-card-header">
+                                <h4 th:text="${record.sector}">Sector Name</h4>
+                                <span class="sector-tag" th:text="${record.phase}">Phase</span>
+                            </div>
+
+                            <div class="sector-card-body">
+                                <div class="sector-row">
+                                    <span>Calculated Date</span>
+                                    <strong th:text="${record.calculatedDate}">2026-01-01</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>RS 12M</span>
+                                    <strong th:text="${record.rs12m}">0.000</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>RSI 14</span>
+                                    <strong th:text="${record.rsi14}">0.0</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>ADX 14</span>
+                                    <strong th:text="${record.adx14}">0.0</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>Return 12M</span>
+                                    <strong th:text="${record.return12m}">N/A</strong>
+                                </div>
+                            </div>
+
+                            <div class="sector-card-footer">
+                                <span class="badge" th:text="${record.trend}">Trend</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </section>
         </main>
 
