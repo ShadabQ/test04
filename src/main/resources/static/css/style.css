@@ -133,11 +133,11 @@ section li {
 .dashboard-summary {
     background-color: #ffffff;
     border: 1px solid #dfe6ee;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 1rem 1.25rem;
     min-width: 180px;
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .dashboard-summary span {
@@ -172,69 +172,146 @@ section li {
     margin-bottom: 1rem;
 }
 
+.sort-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.sort-form .filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 130px;
+}
+
+.sort-form label {
+    color: #5d7083;
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+}
+
+.sort-form select {
+    height: 2.2rem;
+    border-radius: 8px;
+    border: 1px solid #ced7e0;
+    padding: 0 0.65rem;
+    background-color: #ffffff;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort-form button,
+.reset-btn {
+    height: 2.2rem;
+    border-radius: 8px;
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.sort-form button {
+    border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+.sort-form button:hover {
+    background-color: #2f80d8;
+}
+
+.reset-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ced7e0;
+    background-color: #ffffff;
+    color: #34495e;
+    text-decoration: none;
+}
+
+.reset-btn:hover {
+    background-color: #f2f6fb;
+}
+
 .sector-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .sector-card {
     background-color: #ffffff;
     border: 1px solid #e3e8ee;
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 10px 30px rgba(46, 61, 73, 0.06);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 12px 28px rgba(46, 61, 73, 0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sector-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(46, 61, 73, 0.09);
 }
 
 .sector-card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
 }
 
 .sector-card-header h4 {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: #1f3a5f;
 }
 
 .sector-tag {
     background-color: #e8f4fb;
     color: #2176bf;
-    padding: 0.35rem 0.65rem;
-    font-size: 0.8rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
     border-radius: 999px;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
 }
 
 .sector-card-body {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.6rem;
     margin-bottom: 1rem;
 }
 
 .sector-row {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 0.75rem 0.85rem;
-    background-color: #f7fafc;
-    border-radius: 8px;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    background-color: #f5f7fb;
+    border-radius: 10px;
     border: 1px solid #edf2f7;
 }
 
 .sector-row span {
-    color: #657786;
+    color: #5d7083;
+    font-size: 0.9rem;
 }
 
 .sector-row strong {
-    color: #2c3e50;
+    color: #24344d;
+    font-size: 0.95rem;
 }
 
 .sector-card-footer {
@@ -246,12 +323,41 @@ section li {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.45rem 0.85rem;
+    padding: 0.4rem 0.75rem;
     border-radius: 999px;
-    background-color: #dff2e8;
+    background-color: #def2e5;
     color: #1f6f3b;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 1280px) {
+    .sector-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1024px) {
+    .sector-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .sector-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sector-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    .sector-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Hero Section */

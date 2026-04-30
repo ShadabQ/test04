@@ -1,3 +1,5 @@
+/workspaces/test04/src/main/java/com/example/demo/controller/DashboardController.java
+/workspaces/test04/src/main/java/com/example/demo/model/SectorMomentumDashboardProjection.java
 /workspaces/test04/src/main/java/com/example/demo/service/SectorMomentumService.java
 /workspaces/test04/src/main/java/com/example/demo/controller/SectorDataController.java
 /workspaces/test04/src/main/java/com/example/demo/model/SectorMomentumAnalysis.java

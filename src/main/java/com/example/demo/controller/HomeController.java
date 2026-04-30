@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.SectorMomentumAnalysis;
+import com.example.demo.model.SectorMomentumDashboardProjection;
 import com.example.demo.service.SectorMomentumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.core.Authentication;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +32,12 @@ public class HomeController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model, Authentication authentication) {
+    public String dashboard(
+            @RequestParam(name = "sort", defaultValue = "desc") String sort,
+            @RequestParam(name = "phase", defaultValue = "all") String phase,
+            @RequestParam(name = "trend", defaultValue = "all") String trend,
+            Model model,
+            Authentication authentication) {
         String username = authentication.getName();
         String roles = authentication.getAuthorities().stream()
             .map(auth -> auth.getAuthority().replace("ROLE_", ""))
@@ -38,11 +45,16 @@ public class HomeController {
 
         model.addAttribute("username", username);
         model.addAttribute("roles", roles);
+        model.addAttribute("sort", sort);
+        model.addAttribute("selectedPhase", phase);
+        model.addAttribute("selectedTrend", trend);
+        model.addAttribute("phases", sectorMomentumService.getAvailablePhases());
+        model.addAttribute("trends", sectorMomentumService.getAvailableTrends());
         
         // Fetch sector momentum data for dashboard
-        List<SectorMomentumAnalysis> analysis = sectorMomentumService.getAllAnalysis();
+        List<SectorMomentumDashboardProjection> analysis = sectorMomentumService.getDashboardAnalysisSortedAndFiltered(sort, phase, trend);
         model.addAttribute("sectorAnalysis", analysis);
-        model.addAttribute("totalRecords", sectorMomentumService.getTotalCount());
+        model.addAttribute("totalRecords", analysis.size());
         
         return "dashboard";
     }

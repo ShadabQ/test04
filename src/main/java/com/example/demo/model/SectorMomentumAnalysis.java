@@ -38,6 +38,38 @@ public class SectorMomentumAnalysis {
 
     @Column(name = "trend")
     private String trend;
+
+    public String getSector() {
+        return sector;
+    }
+
+    public LocalDate getCalculatedDate() {
+        return calculatedDate;
+    }
+
+    public String getPhase() {
+        return phase;
+    }
+
+    public BigDecimal getRs12m() {
+        return rs12m;
+    }
+
+    public BigDecimal getRsi14() {
+        return rsi14;
+    }
+
+    public BigDecimal getAdx14() {
+        return adx14;
+    }
+
+    public String getReturn12m() {
+        return return12m;
+    }
+
+    public String getTrend() {
+        return trend;
+    }
 }
 
 

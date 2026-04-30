@@ -1,7 +1,9 @@
 com/example/demo/Application.class
 com/example/demo/model/SectorMomentumAnalysis.class
+com/example/demo/controller/SectorDataController.class
 com/example/demo/config/SecurityConfig.class
 com/example/demo/controller/HomeController.class
-com/example/demo/controller/SectorDataController.class
+com/example/demo/model/SectorMomentumDashboardProjection.class
+com/example/demo/controller/DashboardController.class
 com/example/demo/repository/SectorMomentumAnalysisRepository.class
 com/example/demo/service/SectorMomentumService.class
