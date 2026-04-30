@@ -3,57 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Boot Demo - Home</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Welcome to Spring Boot Demo</h1>
+            <h1>Dashboard</h1>
             <nav>
-                <div sec:authorize="isAuthenticated()">
-                    <span th:text="'Logged in as: ' + ${username}"></span>
-                    <a href="/dashboard">Dashboard</a>
-                    <form method="post" action="/logout" style="display:inline;">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                        <button type="submit">Logout</button>
-                    </form>
-                </div>
-                <div sec:authorize="!isAuthenticated()">
-                    <a href="/login">Login</a>
-                </div>
+                <span th:text="'Welcome, ' + ${username}"></span>
+                <a href="/">Home</a>
             </nav>
         </header>
 
         <main>
-            <section class="hero">
-                <h2>Hello <span th:text="${username}"></span></h2>
-                <p>This is a simple Spring Boot application with Thymeleaf templating engine and Spring Security integration.</p>
-            </section>
+            <section class="dashboard-content">
+                <div class="dashboard-header">
+                    
+                    <div class="dashboard-summary">
+                        <span>Total Records</span>
+                        <strong th:text="${totalRecords}">0</strong>
+                    </div>
+                </div>
 
-            <section class="features">
-                <h3>Features</h3>
-                <ul>
-                    <li>Spring Boot 3.2.3</li>
-                    <li>Thymeleaf Template Engine</li>
-                    <li>Spring Security with Role-Based Access Control</li>
-                    <li>Form-Based Authentication</li>
-                    <li>In-Memory User Management</li>
-                    <li>Responsive UI Design</li>
-                </ul>
-            </section>
+                
 
-            <section class="demo-accounts" sec:authorize="!hasAuthority('access_token')">
-                <h3>Demo Accounts (In-Memory Authentication)</h3>
-                <ul>
-                    <li><strong>User:</strong> username: user | password: password</li>
-                    <li><strong>Admin:</strong> username: admin | password: admin123</li>
-                </ul>
-            </section>
+                <section class="sector-grid-section">
+                    <div class="section-title-row">
+                        <div>
+                            <h3>Sector Momentum Analysis</h3>
+                            <p>Each card displays the latest record details for a sector.</p>
+                        </div>
+                        <form class="sort-form" method="get" action="/dashboard">
+                            <div class="filter-group">
+                                <label for="phase">Phase</label>
+                                <select id="phase" name="phase">
+                                    <option value="all" th:selected="${selectedPhase == 'all'}">All phases</option>
+                                    <option th:each="phaseOption : ${phases}"
+                                            th:value="${phaseOption}"
+                                            th:text="${phaseOption}"
+                                            th:selected="${phaseOption == selectedPhase}">
+                                    </option>
+                                </select>
+                            </div>
 
-            <section class="setup-guide">
-                <h3>Getting Started</h3>
-                <p>For Keycloak integration setup, see <strong>KEYCLOAK_SETUP.md</strong></p>
+                            <div class="filter-group">
+                                <label for="trend">Trend</label>
+                                <select id="trend" name="trend">
+                                    <option value="all" th:selected="${selectedTrend == 'all'}">All trends</option>
+                                    <option th:each="trendOption : ${trends}"
+                                            th:value="${trendOption}"
+                                            th:text="${trendOption}"
+                                            th:selected="${trendOption == selectedTrend}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="sort">Sort</label>
+                                <select id="sort" name="sort">
+                                    <option th:value="'desc'" th:selected="${sort == 'desc'}">Golden length desc</option>
+                                    <option th:value="'asc'" th:selected="${sort == 'asc'}">Golden length asc</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-actions">
+                                <button type="submit">Apply</button>
+                                <a class="reset-btn" href="/dashboard">Reset</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="sector-grid">
+                        <div class="sector-card" th:each="record : ${sectorAnalysis}">
+                            <div class="sector-card-header">
+                                <h4 th:text="${record.sector}">Sector Name</h4>
+                                <span class="sector-tag" th:text="${record.phase}">Phase</span>
+                            </div>
+
+                            <div class="sector-card-body">
+                                <div class="sector-row">
+                                    <span>Calculated Date</span>
+                                    <strong th:text="${record.calculatedDate}">2026-01-01</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>RS 12M</span>
+                                    <strong th:text="${record.rs12m}">0.000</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>RSI 14</span>
+                                    <strong th:text="${record.rsi14}">0.0</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>ADX 14</span>
+                                    <strong th:text="${record.adx14}">0.0</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>Golden Length</span>
+                                    <strong th:text="${record.goldenLength}">N/A</strong>
+                                </div>
+                                <div class="sector-row">
+                                    <span>Return 12M</span>
+                                    <strong th:text="${record.return12m}">N/A</strong>
+                                </div>
+                            </div>
+
+                            <div class="sector-card-footer">
+                                <span class="badge" th:text="${record.trend}">Trend</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </section>
         </main>
 
