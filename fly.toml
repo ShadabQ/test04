@@ -1,0 +1,19 @@
+app = "test04-app"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  JAVA_OPTS = "-Xms256m -Xmx512m"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+  ports = [
+    { port = "80" },
+    { port = "443" }
+  ]
+
+  [services.concurrency]
+    soft_limit = 25
+    hard_limit = 50
