@@ -9,10 +9,7 @@ app = "test04-app"
 [[services]]
   internal_port = 8080
   protocol = "tcp"
-  ports = [
-    { port = "80" },
-    { port = "443" }
-  ]
+  ports = [80, 443]
 
   [services.concurrency]
     soft_limit = 25
